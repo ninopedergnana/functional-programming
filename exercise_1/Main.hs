@@ -4,6 +4,9 @@ import Data.List (sort)
 -- flatSort [[1,2,3],[1,3,2], [1]] -> [1,2,3,1,3,2,1]
 flatSort :: [[Integer]] -> [Integer]
 flatSort xs = concat $ map sort xs
+-- flatSort xs = concatMap sort xs 
+
+
 
 -- Aufgabe 2 
 -- concat [[3,2,1],[4]] -> [3,2,1,4]
@@ -14,7 +17,7 @@ flatSort xs = concat $ map sort xs
 flatSortRecursion :: [[Integer]] -> [Integer]
 flatSortRecursion [] = []
 flatSortRecursion [x] = x
-flatSortRecursion (x:xs) = x ++ flatSortRecursion xs
+flatSortRecursion (x:xs) = sort x ++ flatSortRecursion xs
 
 -- Aufgabe 4
 -- initial "abc" "abcd" -> True
@@ -32,4 +35,3 @@ subString :: String -> String -> Bool
 subString x [] = False
 subString x y = 
     initial x y || subString x (tail y)
-
