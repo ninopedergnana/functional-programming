@@ -5,38 +5,37 @@ data Operator
   = Plus
   | Minus
   | Mal
-  | Durch
   deriving Show
 
 data Zahl
   = Null 
   | Eis 
   | Zwei 
-  | Drü 
+  | Drue 
   | Vier 
   | Foif 
   | Sechs 
   | Siebe 
   | Acht 
-  | Nün 
-  | Zäh 
+  | Nuen 
+  | Zaeh 
   | Elf 
-  | Zwölf 
-  | Drizäh 
-  | Vierzäh 
-  | Füfzäh 
-  | Sechszäh 
-  | Siebezäh 
-  | Achtzäh 
-  | Nünzäh 
-  | Zwänzg 
+  | Zwoelf 
+  | Drizaeh 
+  | Vierzaeh 
+  | Fuefzaeh 
+  | Sechszaeh 
+  | Siebezaeh 
+  | Achtzaeh 
+  | Nünzaeh 
+  | Zwaenzg 
   | Driisg 
   | Vierzg 
-  | Füfzg 
+  | Fuefzg 
   | Sechzg 
   | Siebezg 
   | Achzg 
-  | Nünzg 
+  | Nuenzg 
   | Hundert 
   | Tuusig 
   | Eh
@@ -44,9 +43,6 @@ data Zahl
 
 type LookupTableEntry = Map.Map Zahl Integer
 
-data Rechnung
-  = GanzeRechnung Zahl Operator Zahl
-  | ZusatzRechnung Operator Zahl
-  | NurZahl Zahl
+data RechnungsElemente = Zahl Zahl | Operator Operator
 
-type Eingabe = [Rechnung]
+type Eingabe = [RechnungsElemente]
