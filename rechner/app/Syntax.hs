@@ -5,6 +5,7 @@ data Operator
   = Plus
   | Minus
   | Mal
+  | Gleich
   deriving Show
 
 data Zahl
