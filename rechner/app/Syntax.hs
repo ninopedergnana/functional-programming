@@ -12,31 +12,31 @@ data Zahl
   = Null 
   | Eis 
   | Zwei 
-  | Drue 
+  | Drü 
   | Vier 
   | Foif 
   | Sechs 
   | Siebe 
   | Acht 
-  | Nuen 
-  | Zaeh 
+  | Nün 
+  | Zäh 
   | Elf 
-  | Zwoelf 
-  | Drizaeh 
-  | Vierzaeh 
-  | Fuefzaeh 
-  | Sechszaeh 
-  | Siebezaeh 
-  | Achtzaeh 
-  | Nünzaeh 
-  | Zwaenzg 
+  | Zwölf 
+  | Drizäh 
+  | Vierzäh 
+  | Fuefzäh 
+  | Sechszäh 
+  | Siebezäh 
+  | Achtzäh 
+  | Nünzäh 
+  | Zwänzg 
   | Driisg 
   | Vierzg 
-  | Fuefzg 
+  | Füfzg 
   | Sechzg 
   | Siebezg 
   | Achzg 
-  | Nuenzg 
+  | Nünzg 
   | Hundert 
   | Tuusig 
   | Eh
