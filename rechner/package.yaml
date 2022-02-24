@@ -30,9 +30,11 @@ library:
   - parsec
   - megaparsec
   - text
+
 executables:
   rechner-exe:
     main:                Main.hs
+    other-modules:       []
     source-dirs:         app
     ghc-options:
     - -threaded

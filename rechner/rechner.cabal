@@ -26,6 +26,9 @@ source-repository head
 library
   exposed-modules:
       Lib
+      Parser
+      Semantics
+      Syntax
   other-modules:
       Paths_rechner
   hs-source-dirs:
@@ -40,11 +43,6 @@ library
 
 executable rechner-exe
   main-is: Main.hs
-  other-modules:
-      Parser
-      Semantics
-      Syntax
-      Paths_rechner
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N

@@ -2,14 +2,14 @@ module Semantics where
 import Syntax
 import qualified Data.Map as Map
 
-yo :: [Integer]
-yo = [1, 2, 3, 4, 5]
+zahlenWerte :: [Integer]
+zahlenWerte = [1, 2, 3, 4, 5]
 
-ya :: [Zahl]
-ya = [Eis, Zwei, Drue, Vier, Foif]
+zahlenNamen :: [Zahl]
+zahlenNamen = [Eis, Zwei, Drü, Vier, Foif]
 
 makeZahlList :: LookupTableEntry
-makeZahlList = Map.fromList (zip ya yo)
+makeZahlList = Map.fromList (zip zahlenNamen zahlenWerte)
 
 fromJust :: Maybe a -> a
 fromJust (Just a) = a
