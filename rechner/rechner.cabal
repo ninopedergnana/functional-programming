@@ -24,11 +24,6 @@ source-repository head
   location: https://github.com/githubuser/rechner
 
 library
-  exposed-modules:
-      Lib
-      Parser
-      Semantics
-      Syntax
   other-modules:
       Paths_rechner
   hs-source-dirs:

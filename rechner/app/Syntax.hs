@@ -8,42 +8,8 @@ data Operator
   | Gleich
   deriving Show
 
-data Zahl
-  = Null 
-  | Eis 
-  | Zwei 
-  | Drü 
-  | Vier 
-  | Foif 
-  | Sechs 
-  | Siebe 
-  | Acht 
-  | Nün 
-  | Zäh 
-  | Elf 
-  | Zwölf 
-  | Drizäh 
-  | Vierzäh 
-  | Fuefzäh 
-  | Sechszäh 
-  | Siebezäh 
-  | Achtzäh 
-  | Nünzäh 
-  | Zwänzg 
-  | Driisg 
-  | Vierzg 
-  | Füfzg 
-  | Sechzg 
-  | Siebezg 
-  | Achzg 
-  | Nünzg 
-  | Hundert 
-  | Tuusig 
-  | Eh
-  deriving (Show, Eq, Ord)
+type LookupTableEntry = Map.Map String Double
 
-type LookupTableEntry = Map.Map Zahl Integer
-
-data RechnungsElemente = Zahl Zahl | Operator Operator
+data RechnungsElemente = Zahl String | Operator Operator
 
 type Eingabe = [RechnungsElemente]

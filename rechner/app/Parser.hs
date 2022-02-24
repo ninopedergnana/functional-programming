@@ -21,8 +21,3 @@ lexeme = L.lexeme sc
 
 symbol :: String -> Parser String
 symbol = L.symbol sc
-
-eisP :: Parser Zahl
-eisP = do
-        symbol "eis"
-        Eis
