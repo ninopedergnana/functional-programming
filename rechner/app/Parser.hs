@@ -1,5 +1,5 @@
 module Parser where
-
+{-
 import Control.Monad (void)
 import Data.Text (Text)
 import Data.Void
@@ -21,3 +21,4 @@ lexeme = L.lexeme sc
 
 symbol :: String -> Parser String
 symbol = L.symbol sc
+-}
