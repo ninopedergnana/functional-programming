@@ -1,5 +1,9 @@
 import Data.List
 
+--------------------------------------------------------
+---------------------- exercise 1 ----------------------
+--------------------------------------------------------
+
 newtype Horsepower = HorsePower String
         deriving (Show, Eq, Ord)
 newtype Model = Model String
@@ -29,11 +33,16 @@ instance Ord Car where
                 (power a, year a, model a, color a)
                 (power a, year a, model a, color a)
 
+
 unsortedList :: [Car]
 unsortedList = [ford, renault, ferrari]
 
 sortedList :: [Car]
 sortedList = sort [renault, ford, ferrari]
+
+--------------------------------------------------------
+---------------------- exercise 2 ----------------------
+--------------------------------------------------------
 
 
 data Tree a =
@@ -59,5 +68,29 @@ baum = Tree' 1
 	, Tree' 3 
 	[Tree' 8 []]
 	]
+
+--------------------------------------------------------
+---------------------- exercise 3 ----------------------
+-------------------------------------------------------- 
+
+data NatNum = Z | N NatNum
+        deriving Show
+
+eval :: NatNum -> Integer
+eval Z = 0
+eval (N n) = eval n + 1
+
+uneval :: Integer ->  NatNum
+uneval n 
+        | n < 0 = error "you done goofed"
+        | n == 0 =  Z
+        | n > 0 = N (uneval (n - 1))
+
+
+
+
+
+
+
 
 
