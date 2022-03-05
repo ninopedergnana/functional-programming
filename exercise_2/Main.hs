@@ -58,8 +58,13 @@ collect tree = case tree of
         Node left a right -> [a] ++ collect left ++ collect right
 
 
+
+
 data Tree' a = Tree' a [Tree' a]
         deriving (Show, Eq, Ord)
+
+collect2 :: Tree' a -> [a]
+collect2 (Tree' a rest) = a:concatMap collect2 rest
 
 baum :: Tree' Int
 baum = Tree' 1 
@@ -83,11 +88,28 @@ eval (N n) = eval n + 1
 uneval :: Integer ->  NatNum
 uneval n 
         | n < 0 = error "you done goofed"
-        | n == 0 =  Z
+        | n == 0 = Z
         | n > 0 = N (uneval (n - 1))
 
+add :: NatNum -> NatNum -> NatNum
+add Z z = z
+add (N n) x = N (n `add` x)
 
+-- x = uneval 5
+-- y = uneval 7
+-- x `add` y
+-- --> N (N (N (N (N (N (N (N (N (N (N (N Z)))))))))))
+-- eval $ x `add` y
+-- --> 12
 
+mul :: NatNum -> NatNum -> NatNum
+mul Z z = Z
+mul (N n) x =  (n `mul` x) `add` x 
+
+-- x = uneval 2
+-- y = uneval 2
+-- eval $ x `mul` y
+-- --> 4
 
 
 
