@@ -65,9 +65,10 @@ bmiMode db = do
   putStrLn "Name?"
   name <- getLine
   when (not (null name)) $ do
-    personData <- (getWeightAndHeight db name)
+    personData <- getWeightAndHeight db name
     putStrLn (show $ "Person data:")
-    let result = bmiCalc (head . head personData) (last . last personData)
+    let firstlist = head personData
+    let result = bmiCalc (head firstlist) (last firstlist)
     print result
 
 
@@ -76,6 +77,7 @@ bmiCalc heightCm weightKg = do
     let w = read weightKg :: Float
     let h = read heightCm :: Float
     return (w/(h/100)^2)
+
 
 
 main :: IO ()
