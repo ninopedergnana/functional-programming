@@ -59,20 +59,24 @@ queryMode db = do
     putStrLn (show $ "Person data:")
     mapM_ print personData
 
-bmi :: Connection -> IO ()
-bmi db = do
+
+bmiMode :: Connection -> IO ()
+bmiMode db = do
   putStrLn "Name?"
   name <- getLine
   when (not (null name)) $ do
-    personBMI <- getWeightAndHeight db name
-    putStrLn (show $ "Person BMI:")
-    mapM_ print personBMI
+    personData <- (getWeightAndHeight db name)
+    putStrLn (show $ "Person data:")
+    let result = bmiCalc (head . head personData) (last . last personData)
+    print result
+
 
 bmiCalc :: String -> String -> Float
 bmiCalc heightCm weightKg = do
-    let w = read weightCm :: Integer
-    let h = read heightKg :: Integer
-    return (weightKg/(heightCm/100)^2)
+    let w = read weightKg :: Float
+    let h = read heightCm :: Float
+    return (w/(h/100)^2)
+
 
 main :: IO ()
 main = do
@@ -81,5 +85,5 @@ main = do
   choice <- getLine
   case choice of "a" -> addMode db
                  "q" -> queryMode db
-                 "b" -> bmi db
+                 "b" -> bmiMode db
                  _ -> return ()
