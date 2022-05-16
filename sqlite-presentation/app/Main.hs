@@ -12,7 +12,7 @@ createQuery = Query (T.pack "CREATE TABLE IF NOT EXISTS database (firstname TEXT
 addQuery :: Query
 addQuery = Query (T.pack "INSERT INTO database (firstname, lastname, weight, height, phone) VALUES (?, ?, ?, ?, ?);")
 
-addToDatabase :: Connection -> String -> String -> String -> String -> String -> IO ()
+addToDatabase :: Connection -> String -> String -> Float -> Float -> String -> IO ()
 addToDatabase db firstname lastname weight height phone = execute db addQuery (firstname, lastname, weight, height, phone)
 
 -- A query for getting all numbers associated with a given name from the database.
@@ -23,10 +23,10 @@ getQuery = Query (T.pack "SELECT * FROM database WHERE lastname = ?;")
 getBMIQuery :: Query
 getBMIQuery = Query (T.pack "SELECT weight, height FROM database WHERE lastname = ?;")
 
-getPersonData :: Connection -> String -> IO [[String]]
+getPersonData :: Connection -> String -> IO [(String, String, Float, Float, String)]
 getPersonData db name = query db getQuery [name]
 
-getWeightAndHeight :: Connection -> String -> IO [[String]]
+getWeightAndHeight :: Connection -> String -> IO [(Float, Float)]
 getWeightAndHeight db name = query db getBMIQuery [name]
 
 openDatabase :: IO Connection
@@ -48,7 +48,7 @@ addMode db = do
     height <- getLine
     putStrLn "Phone?"
     phone <- getLine
-    addToDatabase db firstname lastname weight height phone
+    addToDatabase db firstname lastname (read weight :: Float) (read height :: Float) phone
 
 queryMode :: Connection -> IO ()
 queryMode db = do
@@ -65,18 +65,14 @@ bmiMode db = do
   putStrLn "Name?"
   name <- getLine
   when (not (null name)) $ do
-    personData <- getWeightAndHeight db name
+    bmiData <- getWeightAndHeight db name
     putStrLn (show $ "Person data:")
-    let firstlist = head personData
-    let result = bmiCalc (head firstlist) (last firstlist)
+    let result = bmiCalc (head bmiData)
     print result
 
 
-bmiCalc :: String -> String -> Float
-bmiCalc heightCm weightKg = do
-    let w = read weightKg :: Float
-    let h = read heightCm :: Float
-    return (w/(h/100)^2)
+bmiCalc :: (Float, Float) -> Float
+bmiCalc (w, h) = w/(h/100)^2
 
 
 
