@@ -6,7 +6,7 @@ import Database.SQLite.Simple
 
 -- A query for creating a table in the database. Does nothing if the table exists already.
 createQuery :: Query
-createQuery = Query (T.pack "CREATE TABLE IF NOT EXISTS database (firstname TEXT, lastname TEXT, weight TEXT, height TEXT, phone TEXT);")
+createQuery = Query (T.pack "CREATE TABLE IF NOT EXISTS database (firstname TEXT, lastname TEXT, weight FLOAT, height FLOAT, phone TEXT);")
 
 -- A query for adding a (name, phonenumber) pair into the database.
 addQuery :: Query
@@ -66,14 +66,12 @@ bmiMode db = do
   name <- getLine
   when (not (null name)) $ do
     bmiData <- getWeightAndHeight db name
-    putStrLn (show $ "Person data:")
-    let result = bmiCalc (head bmiData)
-    print result
+    putStrLn (show $ "BMI for Peron(s) with the name: " ++ name)
+    mapM_ (print . bmiCalc) bmiData
 
 
 bmiCalc :: (Float, Float) -> Float
 bmiCalc (w, h) = w/(h/100)^2
-
 
 
 main :: IO ()
